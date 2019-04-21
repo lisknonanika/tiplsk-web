@@ -1,0 +1,27 @@
+{
+  "name": "tiplsk-web",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lisknonanika/tiplsk-web.git"
+  },
+  "author": "lisknonanika",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/lisknonanika/tiplsk-web/issues"
+  },
+  "homepage": "https://github.com/lisknonanika/tiplsk-web#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "ejs": "^2.6.1",
+    "express": "^4.16.4",
+    "express-session": "^1.16.1",
+    "helmet": "^3.16.0",
+    "request": "^2.88.0"
+  }
+}
