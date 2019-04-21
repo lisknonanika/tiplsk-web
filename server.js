@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const helmet = require('helmet');
 const config = require('./config');
 const request = require('./request');
+const utils = require('./utils');
 
 const app = express();
 app.set('secret', config.secret);
@@ -15,18 +16,22 @@ app.use(session({
     name: 'tiplsk-session',
     secret: 'cookie-secret',
     resave: false,
-    saveUninitialized: false
+    saveUninitialized: false,
+    rolling: true,
+    cookie: {
+        maxAge: 15 * 60 * 1000
+    }
 }));
 
 const router = express.Router();
 app.use('/', router);
 
 /**
- * 認証処理
+ * ログイン画面表示
  */
 router.get('/', (req, res) => {
     (async () => {
-        if (session.token) res.redirect('/user');
+        if (req.session.token) res.redirect('/user');
         else if (req.query.error) res.render('index', {error: 'Authentication failed.'});
         else if (req.query.timeout) res.render('index', {error: 'Session Timeout.'});
         else res.render('index', {error: ''});
@@ -36,6 +41,9 @@ router.get('/', (req, res) => {
     });
 });
 
+/**
+ * ログイン処理
+ */
 router.post('/login', (req, res) => {
     (async () => {
         const data = await request({
@@ -47,7 +55,7 @@ router.post('/login', (req, res) => {
         });
         let redirectUrl = '/';
         if (!data.result) redirectUrl = `${redirectUrl}?error=true`
-        else session.token = data.token;
+        else req.session.token = data.token;
         res.redirect(redirectUrl);
     })().catch((err) => {
         // SYSTEM ERROR
@@ -55,9 +63,12 @@ router.post('/login', (req, res) => {
     });
 });
 
+/**
+ * ログアウト処理
+ */
 router.post('/logout', (req, res) => {
     (async () => {
-        session.token = null;
+        req.session.token = null;
         res.redirect('/');
     })().catch((err) => {
         // SYSTEM ERROR
@@ -65,20 +76,37 @@ router.post('/logout', (req, res) => {
     });
 });
 
+/**
+ * ユーザー情報画面表示
+ */
 router.get('/user', (req, res) => {
     (async () => {
-        if (!session.token) {
+        if (!req.session.token) {
             res.redirect('/?timeout=true');
             return;
         }
 
-        const data = await request({
+        const userData = await request({
             method: 'GET',
             url: `${config.apiUrl}user`,
-            headers: {'x-access-token': session.token},
+            headers: {'x-access-token': req.session.token},
             json: true
         });
-        if (data.result) res.render('user', data);
+
+        const historyData = await request({
+            method: 'GET',
+            url: `${config.apiUrl}history?offset=0&limit=20`,
+            headers: {'x-access-token': req.session.token},
+            json: true
+        });
+        let histories = [];
+        if (historyData.datas) histories = historyData.datas;
+        const params = {
+            user: userData,
+            history: histories,
+            utils: utils
+        }
+        if (userData.result && historyData.result) res.render('user', params);
         else res.redirect('/?timeout=true');
     })().catch((err) => {
         console.log(err);

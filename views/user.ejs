@@ -11,7 +11,17 @@
         <button type="submit">Logout</button>
     </form>
     <h1>User Info</h1>
-    <div><span>UserId:</span><%= userId %></div>
-    <div><span>Balance:</span><%= amount %>LSK</div>
+    <div class="container">
+        <div><span>UserId:</span><%= user.userId %></div>
+        <div><span>Balance:</span><%= user.amount %>LSK</div>
+        <br>
+        <% for (item of history) { %>
+        <div class="row" style="border-bottom: 1px solid #666;">
+            <div class="col-xs-5 col-sm-5 col-md-3"><%= item.amount %>LSK</div>
+            <div class="col-xs-5 col-sm-5 col-md-5"><%= utils.getTypeAndName(item.type, item.targetNm) %></div>
+            <div class="col-xs-10 col-sm-10 col-md-4"><%= utils.formatDate(item.execDate, 'yyyy/mm/dd HH:MM:ss') %></div>
+        </div>
+        <% } %> 
+    </div>
 </body>
 </html>
