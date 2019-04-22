@@ -11,6 +11,7 @@ app.set('secret', config.secret);
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
+app.use(express.static(__dirname + '/public'));
 app.use(helmet());
 app.use(session({
     name: 'tiplsk-session',
@@ -32,12 +33,15 @@ app.use('/', router);
 router.get('/', (req, res) => {
     (async () => {
         if (req.session.token) res.redirect('/user');
-        else if (req.query.error) res.render('index', {error: 'Authentication failed.'});
-        else if (req.query.timeout) res.render('index', {error: 'Session Timeout.'});
-        else res.render('index', {error: ''});
+        else if (req.query.error) res.render('index', {error: 'Authentication failed.', utils: utils});
+        else if (req.query.timeout) res.render('index', {error: 'Session Timeout.', utils: utils});
+        else res.render('index', {error: '', utils: utils});
     })().catch((err) => {
         // SYSTEM ERROR
         console.log(err);
+        req.session.token = null;
+        res.status(500);
+        res.render('500');
     });
 });
 
@@ -60,6 +64,9 @@ router.post('/login', (req, res) => {
     })().catch((err) => {
         // SYSTEM ERROR
         console.log(err);
+        req.session.token = null;
+        res.status(500);
+        res.render('500');
     });
 });
 
@@ -73,6 +80,9 @@ router.post('/logout', (req, res) => {
     })().catch((err) => {
         // SYSTEM ERROR
         console.log(err);
+        req.session.token = null;
+        res.status(500);
+        res.render('500');
     });
 });
 
@@ -109,9 +119,17 @@ router.get('/user', (req, res) => {
         if (userData.result && historyData.result) res.render('user', params);
         else res.redirect('/?timeout=true');
     })().catch((err) => {
-        console.log(err);
         // SYSTEM ERROR
+        console.log(err);
+        req.session.token = null;
+        res.status(500);
+        res.render('500');
     });
+});
+
+app.use((req, res, next) => {
+    res.status(404);
+    res.render('404');
 });
 
 app.listen(config.listenPort);

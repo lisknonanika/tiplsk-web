@@ -1,0 +1,35 @@
+@charset "utf-8";
+body {
+    font-family: "Aldrich", "Noto Sans", sans-serif, monospace
+}
+.title {
+    margin-top: 30%;
+}
+.alert {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+.input {
+    width: 100%;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+#frm-login {
+    padding: 10px;
+}
+#text-id {
+    margin-bottom: 5px;
+}
+#text-pw {
+    margin-bottom: 20px;
+}
+#btn-login {
+    width: 100%;
+    margin-bottom: 10px;
+}
+#link-tweet {
+    width: 100%;
+}
+#tiplsk-info {
+    margin-top:30px;
+}

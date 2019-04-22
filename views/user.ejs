@@ -5,21 +5,25 @@
     <meta charset="utf-8">
     <title>TipLisk:User Page</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Aldrich" rel="stylesheet">
+    <link rel="stylesheet" href="./css/user.css">
 </head>
 <body>
-    <form action="/logout" method="post" name="logout-form">
-        <button type="submit">Logout</button>
-    </form>
-    <h1>User Info</h1>
     <div class="container">
+        <br>
+        <form action="/logout" method="post" name="logout-form">
+            <button type="submit" class="btn btn-secondary">Logout</button>
+        </form>
+        <br>
+        <h2>User Info</h2>
         <div><span>UserId:</span><%= user.userId %></div>
         <div><span>Balance:</span><%= user.amount %>LSK</div>
         <br>
         <% for (item of history) { %>
         <div class="row" style="border-bottom: 1px solid #666;">
-            <div class="col-xs-5 col-sm-5 col-md-3"><%= item.amount %>LSK</div>
-            <div class="col-xs-5 col-sm-5 col-md-5"><%= utils.getTypeAndName(item.type, item.targetNm) %></div>
-            <div class="col-xs-10 col-sm-10 col-md-4"><%= utils.formatDate(item.execDate, 'yyyy/mm/dd HH:MM:ss') %></div>
+            <div class="col-sm-12 col-md-3"><%= item.amount %>LSK</div>
+            <div class="col-sm-12 col-md-5"><%= utils.getTypeAndName(item.type, item.targetNm) %></div>
+            <div class="col-sm-12 col-md-4"><%= utils.formatDate(item.execDate, 'yyyy/mm/dd HH:MM:ss') %></div>
         </div>
         <% } %> 
     </div>
