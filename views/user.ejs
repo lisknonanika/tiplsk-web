@@ -16,14 +16,21 @@
         </form>
         <br>
         <h2>User Info</h2>
-        <div><span>UserId:</span><%= user.userId %></div>
-        <div><span>Balance:</span><%= user.amount %>LSK</div>
+        <div class="row">
+            <div class="user-label">UserId:&nbsp;</div>
+            <div class="user-value"><%= user.userId %></div>
+        </div>
+        <div class="row">
+            <div class="user-label">Balance:&nbsp;</div>
+            <div class="user-value"><%= user.amount %>&nbsp;LSK</div>
+        </div>
         <br>
+        <h2>History</h2>
         <% for (item of history) { %>
-        <div class="row" style="border-bottom: 1px solid #666;">
-            <div class="col-sm-12 col-md-3"><%= item.amount %>LSK</div>
+        <div class="row type-<%= item.type %>">
+            <div class="col-sm-12 col-md-4"><%= utils.numberFormat(item.amount) %>&nbsp;LSK</div>
             <div class="col-sm-12 col-md-5"><%= utils.getTypeAndName(item.type, item.targetNm) %></div>
-            <div class="col-sm-12 col-md-4"><%= utils.formatDate(item.execDate, 'yyyy/mm/dd HH:MM:ss') %></div>
+            <div class="col-sm-12 col-md-3"><%= utils.formatDate(item.execDate, 'yyyy/mm/dd HH:MM:ss') %></div>
         </div>
         <% } %> 
     </div>

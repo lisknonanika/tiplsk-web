@@ -10,6 +10,16 @@ module.exports.isEmpty = (val) => {
 /**
  * Get Formated DateTime
  */
+module.exports.numberFormat = (val) => {
+  const formatter = new Intl.NumberFormat('ja-JP');
+  const nums = val.split('.');
+  if (nums.length > 1) return `${formatter.format(nums[0])}.${nums[1]}`;
+  else return formatter.format(val);
+}
+
+/**
+ * Get Formated DateTime
+ */
 module.exports.formatDate = (val, fmt) => {
   return dateformat(val, fmt);
 }
@@ -19,8 +29,8 @@ module.exports.formatDate = (val, fmt) => {
  */
 module.exports.getTypeAndName = (val, nm) => {
   let type = 'Unknown';
-  if (val === 0) type = `Recipient:${nm}`;
-  else if (val === 1) type = `Sender:${nm}`;
+  if (val === 0) type = `To: ${nm}`;
+  else if (val === 1) type = `From: ${nm}`;
   else if (val === 2) type = 'Fee';
   return type;
 }

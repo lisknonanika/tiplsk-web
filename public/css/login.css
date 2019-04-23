@@ -2,12 +2,13 @@
 body {
     font-family: "Aldrich", "Noto Sans", sans-serif, monospace
 }
-.title {
-    margin-top: 30%;
-}
 .alert {
     padding-top: 5px;
     padding-bottom: 5px;
+    margin-bottom: 5px;
+}
+.title {
+    margin-left: -1rem;
 }
 .input {
     width: 100%;
@@ -21,15 +22,19 @@ body {
     margin-bottom: 5px;
 }
 #text-pw {
-    margin-bottom: 20px;
+    margin-bottom: 15px;
 }
 #btn-login {
     width: 100%;
     margin-bottom: 10px;
 }
-#link-tweet {
+#link-getid {
     width: 100%;
 }
+#link-resetpw {
+    margin-top: 10px;
+}
 #tiplsk-info {
-    margin-top:30px;
+    margin-top: 10px;
+    margin-left: -1rem;
 }

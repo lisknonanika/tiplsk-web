@@ -4,33 +4,57 @@
     <meta content="width=device-width,initial-scale=1.0" name="viewport">
     <meta charset="utf-8">
     <title>TipLisk:Login Page</title>
-    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Aldrich" rel="stylesheet">
     <link rel="stylesheet" href="./css/login.css">
-    </head>
+    <script>
+        const adjust = () => {
+            const container = document.querySelector('.container');
+            const ch = container.offsetHeight;
+            const wh = window.innerHeight;
+            if (wh > ch) container.style = `margin-top: ${(wh-ch) / 2}px`
+            else container.style = `margin-top: 5px`
+        }
+        onload = adjust;
+        
+        window.addEventListener('resize', () => {
+            setTimeout(function(){
+                adjust();
+            }, 100);
+        });
+    </script>
+</head>
 <body>
     <div class="container">
-        <h2 class="title">TipLisk WEB</h2>
+        <div class="row">
+            <div class="col-1 col-sm-2 col-md-3"></div>
+            <h2 class="title">TipLisk WEB</h2>
+        </div>
         <form action="/login" method="post">
             <div class="row">
-                <div class="col-1 col-sm-3"></div>
-                <div id="frm-login" class="col-10 col-sm-6">
+                <div class="col-1 col-sm-2 col-md-3"></div>
+                <div id="frm-login" class="col-10 col-sm-8 col-md-6">
                     <% if (!utils.isEmpty(error)) { %>
                     <div class="alert alert-danger"><%= error %></div>
                     <% } %>
                     <input type="text" name="id" id="text-id" class="input" placeholder="User ID" required>
                     <input type="password" name="pw" id="text-pw" class="input" placeholder="Password" required>
                     <button type="submit" id="btn-login" class="btn btn-primary">Login</button>
-                    <div><a href="https://twitter.com/intent/tweet?text=%40tiplsk%20webaccess" id="link-tweet" class="btn btn-outline-primary" data-text="@tiplsk webaccess" target="_blank">Get ID and Password</a></div>
+                    <div><a href="https://twitter.com/intent/tweet?text=%40tiplsk%20webaccess" id="link-getid" class="btn btn-outline-primary" data-text="@tiplsk webaccess" target="_blank">Get ID and Password</a></div>
+                    <div id="link-resetpw" class="text-center"><a href="https://twitter.com/intent/tweet?text=%40tiplsk%20resetpw" data-text="@tiplsk resetpw" target="_blank">Reset Password</a></div>
                 </div>
-                <div class="col-1 col-sm-3">
-                </div>
+                <div class="col-1 col-sm-2 col-md-3"></div>
             </div>
         </form>
         <div id="tiplsk-info">
-            <div><a href="https://lisknonanika.github.io/tiplsk-doc/" target="_blank">What is TipLsik</a></div>
-            <div>Contact: <a href="https://twitter.com/ys_mdmg" target="_blank">@ys_mdmg</a></div>
+            <div class="row">
+                <div class="col-1 col-sm-2 col-md-3"></div>
+                <div class="col-8"><a href="https://lisknonanika.github.io/tiplsk-doc/" target="_blank">What is TipLsik</a></div>
+            </div>
+            <div class="row">
+                <div class="col-1 col-sm-2 col-md-3"></div>
+                <div class="col-8">Contact: <a href="https://twitter.com/ys_mdmg" target="_blank">@ys_mdmg</a></div>
+            </div>
         </div>
     </div>
 </body>
