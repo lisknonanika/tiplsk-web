@@ -35,7 +35,8 @@ router.get('/', (req, res) => {
         if (req.session.token) res.redirect('/user');
         else if (req.query.error) res.render('index', {error: 'Authentication failed.', utils: utils});
         else if (req.query.timeout) res.render('index', {error: 'Session Timeout.', utils: utils});
-        else res.render('index', {error: '', utils: utils});
+        else if (req.query.logout) res.render('index', {info: 'Logout しました。', utils: utils});
+        else res.render('index', {utils: utils});
     })().catch((err) => {
         // SYSTEM ERROR
         console.log(err);
@@ -73,10 +74,10 @@ router.post('/login', (req, res) => {
 /**
  * ログアウト処理
  */
-router.post('/logout', (req, res) => {
+router.get('/logout', (req, res) => {
     (async () => {
         req.session.token = null;
-        res.redirect('/');
+        res.redirect('/?logout=true');
     })().catch((err) => {
         // SYSTEM ERROR
         console.log(err);
@@ -95,28 +96,43 @@ router.get('/user', (req, res) => {
             res.redirect('/?timeout=true');
             return;
         }
-
-        const userData = await request({
+        const data = await request({
             method: 'GET',
             url: `${config.apiUrl}user`,
             headers: {'x-access-token': req.session.token},
             json: true
         });
+        if (data.result) res.render('user', {user: data, utils: utils});
+        else res.redirect('/?timeout=true');
+    })().catch((err) => {
+        // SYSTEM ERROR
+        console.log(err);
+        req.session.token = null;
+        res.status(500);
+        res.render('500');
+    });
+});
 
-        const historyData = await request({
+/**
+ * 履歴情報画面表示
+ */
+router.get('/history', (req, res) => {
+    (async () => {
+        if (!req.session.token) {
+            res.redirect('/?timeout=true');
+            return;
+        }
+        const offset = req.query.offset || 0;
+        const limit = req.query.limit || 20;
+        const data = await request({
             method: 'GET',
-            url: `${config.apiUrl}history?offset=0&limit=20`,
+            url: `${config.apiUrl}history?offset=${offset}&limit=${limit}`,
             headers: {'x-access-token': req.session.token},
             json: true
         });
         let histories = [];
-        if (historyData.datas) histories = historyData.datas;
-        const params = {
-            user: userData,
-            history: histories,
-            utils: utils
-        }
-        if (userData.result && historyData.result) res.render('user', params);
+        if (data.datas) histories = data.datas;
+        if (data.result) res.render('history', {history: histories, utils: utils});
         else res.redirect('/?timeout=true');
     })().catch((err) => {
         // SYSTEM ERROR

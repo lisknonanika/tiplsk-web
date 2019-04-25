@@ -10,7 +10,7 @@ module.exports.isEmpty = (val) => {
 /**
  * Get Formated DateTime
  */
-module.exports.numberFormat = (val) => {
+module.exports.formatNumber = (val) => {
   const formatter = new Intl.NumberFormat('ja-JP');
   const nums = val.split('.');
   if (nums.length > 1) return `${formatter.format(nums[0])}.${nums[1]}`;

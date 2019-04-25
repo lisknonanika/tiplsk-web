@@ -10,10 +10,12 @@ body {
 .title {
     margin-left: -1rem;
 }
-.input {
+.input[type="text"],
+.input[type="password"]  {
+    border: 1px solid #666;
+    border-radius: 5px;
     width: 100%;
-    padding-top: 5px;
-    padding-bottom: 5px;
+    padding: 5px 10px;
 }
 #frm-login {
     padding: 10px;
@@ -35,6 +37,6 @@ body {
     margin-top: 10px;
 }
 #tiplsk-info {
-    margin-top: 10px;
-    margin-left: -1rem;
+    margin-top: 15px;
+    margin-left: -1.5rem;
 }

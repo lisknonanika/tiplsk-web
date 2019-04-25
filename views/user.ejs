@@ -7,32 +7,27 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Aldrich" rel="stylesheet">
     <link rel="stylesheet" href="./css/user.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+    <script src="./js/common.js"></script>
+    <script src="./js/user.js"></script>
 </head>
 <body>
     <div class="container">
         <br>
-        <form action="/logout" method="post" name="logout-form">
-            <button type="submit" class="btn btn-secondary">Logout</button>
-        </form>
+        <div>
+            <a href="./user" class="btn btn-warning">Home</a>
+            <a href="./history?offset=0&limit=20" class="btn btn-warning">History</a>
+            <a href="./logout" class="btn btn-secondary">Logout</a>
+        </div>
         <br>
         <h2>User Info</h2>
-        <div class="row">
-            <div class="user-label">UserId:&nbsp;</div>
-            <div class="user-value"><%= user.userId %></div>
-        </div>
-        <div class="row">
-            <div class="user-label">Balance:&nbsp;</div>
-            <div class="user-value"><%= user.amount %>&nbsp;LSK</div>
-        </div>
+        <div class="user-label">UserId:&nbsp;</div>
+        <div class="user-value"><%= user.userId %></div>
+        <div class="user-label">Balance:&nbsp;</div>
+        <div class="user-value"><%= utils.formatNumber(user.amount) %>&nbsp;LSK</div>
         <br>
-        <h2>History</h2>
-        <% for (item of history) { %>
-        <div class="row type-<%= item.type %>">
-            <div class="col-sm-12 col-md-4"><%= utils.numberFormat(item.amount) %>&nbsp;LSK</div>
-            <div class="col-sm-12 col-md-5"><%= utils.getTypeAndName(item.type, item.targetNm) %></div>
-            <div class="col-sm-12 col-md-3"><%= utils.formatDate(item.execDate, 'yyyy/mm/dd HH:MM:ss') %></div>
-        </div>
-        <% } %> 
+        <div><a href="javascript: void(0);" id="btn-withdraw" class="btn btn-outline-primary" onclick="withdraw();">Withdraw</a></div>
+        <div><a href="javascript: void(0);" id="btn-changepw" class="btn btn-outline-danger">Change Password</a></div>
     </div>
 </body>
 </html>

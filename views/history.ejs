@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta content="width=device-width,initial-scale=1.0" name="viewport">
+    <meta charset="utf-8">
+    <title>TipLisk:History Page</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Aldrich" rel="stylesheet">
+    <link rel="stylesheet" href="./css/history.css">
+</head>
+<body>
+    <div class="container">
+        <br>
+        <div>
+            <a href="./user" class="btn btn-warning">Home</a>
+            <a href="./history?offset=0&limit=20" class="btn btn-warning">History</a>
+            <a href="./logout" class="btn btn-secondary">Logout</a>
+        </div>
+        <br>
+        <h2>History</h2>
+        <select>
+        </select>
+        <% for (item of history) { %>
+        <div class="row type-<%= item.type %>">
+            <div class="col-sm-12 col-md-4"><%= utils.formatNumber(item.amount) %>&nbsp;LSK</div>
+            <div class="col-sm-12 col-md-5 history-target"><%= utils.getTypeAndName(item.type, item.targetNm) %></div>
+            <div class="col-sm-12 col-md-3 history-date"><%= utils.formatDate(item.execDate, 'yyyy/mm/dd HH:MM:ss') %></div>
+        </div>
+        <% } %> 
+    </div>
+</body>
+</html>
