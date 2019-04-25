@@ -15,17 +15,12 @@ body {
     line-height: 1.5;
 }
 .swal2-icon {
-    width: 4rem !important;
-    height: 4rem !important;
     font-family: 'Open Sans', -apple-system, BlinkMacSystemFont,
                 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell,
                 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
-.swal2-icon::before {
-    font-size: 3.25rem !important;
-}
 #swal2-title {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
 }
 .swal2-popup input[type="text"] {
     border: 1px solid #666;
