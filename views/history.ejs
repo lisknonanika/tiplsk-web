@@ -13,9 +13,9 @@
 <body>
     <div class="container">
         <div class="btn-group" role="group" aria-label="メニュー">
-            <button type="button" class="btn btn btn-outline-success" onclick="location.href='../user'">Home</button>
-            <button type="button" class="btn btn-success">History</button>
-            <button type="button" class="btn btn-outline-danger" onclick="location.href='../logout'">Logout</button>
+            <button type="button" class="btn btn btn-outline-success" onclick="location.href='../user'"><span class="fas fa-home"></span>&nbsp;Home</button>
+            <button type="button" class="btn btn-success"><span class="fas fa-list-alt"></span>&nbsp;History</button>
+            <button type="button" class="btn btn-outline-danger" onclick="location.href='../logout'"><span class="fas fa-sign-out-alt"></span>&nbsp;Logout</button>
         </div>
         <h2>History</h2>
         <% if (history.length === 0) { %>

@@ -1,6 +1,6 @@
 @charset "utf-8";
 body {
-    font-family: "Aldrich", "Noto Sans", sans-serif, monospace
+    font-family: "Aldrich", "Noto Sans", sans-serif, monospace;
 }
 .btn-group {
     padding-top: 10px;
