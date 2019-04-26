@@ -99,7 +99,7 @@ select {
 .type-2 .history-target .icon::before {
     content: '　　';
     background-image: url("../img/lisk_logo.svg") !important;
-    background-size: 1.7rem;
+    background-size: 1.6rem;
     background-repeat: no-repeat;
     padding-top: 5px;
     margin-left: -5px;
