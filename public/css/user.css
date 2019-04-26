@@ -2,6 +2,14 @@
 body {
     font-family: "Aldrich", "Noto Sans", sans-serif, monospace
 }
+.btn-group {
+    padding-top: 10px;
+    padding-bottom: 20px;
+    width: 100%;
+}
+.btn-group > button {
+    font-size: 0.8rem;
+}
 .user-value {
     margin-left: 1rem;
     margin-bottom: 10px;
@@ -16,22 +24,22 @@ body {
 }
 .swal2-icon {
     font-family: 'Open Sans', -apple-system, BlinkMacSystemFont,
-                'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell,
-                'Helvetica Neue', Helvetica, Arial, sans-serif;
+                 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell,
+                 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 #swal2-title {
     font-size: 1.3rem;
 }
-.swal2-popup input[type="text"] {
+.swal2-popup input[type="text"],
+.swal2-popup input[type="password"] {
     border: 1px solid #666;
     border-radius: 5px;
     width: 100%;
     padding: 10px;
+    margin-bottom: 5px;
 }
-.swal2-popup #field-address,
 .swal2-popup #field-amount {
     position: relative;
-    margin-bottom: 5px;
 }
 .swal2-popup #text-amount {
     padding-right: 4rem;
@@ -50,4 +58,7 @@ body {
 .swal2-popup #field-note {
     font-size: 0.9rem;
     color: #f00;
+}
+.swal2-popup #field-link .btn {
+    font-size: 0.9rem;
 }

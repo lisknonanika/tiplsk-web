@@ -5,28 +5,35 @@
     <meta charset="utf-8">
     <title>TipLisk:History Page</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css?family=Aldrich" rel="stylesheet">
-    <link rel="stylesheet" href="./css/history.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Aldrich" >
+    <link rel="stylesheet" href="../css/history.css">
+    <script src="../js/history.js"></script>
 </head>
 <body>
     <div class="container">
-        <br>
-        <div>
-            <a href="./user" class="btn btn-warning">Home</a>
-            <a href="./history?offset=0&limit=20" class="btn btn-warning">History</a>
-            <a href="./logout" class="btn btn-secondary">Logout</a>
+        <div class="btn-group" role="group" aria-label="メニュー">
+            <button type="button" class="btn btn btn-outline-success" onclick="location.href='../user'">Home</button>
+            <button type="button" class="btn btn-success">History</button>
+            <button type="button" class="btn btn-outline-danger" onclick="location.href='../logout'">Logout</button>
         </div>
-        <br>
         <h2>History</h2>
-        <select>
-        </select>
-        <% for (item of history) { %>
-        <div class="row type-<%= item.type %>">
-            <div class="col-sm-12 col-md-4"><%= utils.formatNumber(item.amount) %>&nbsp;LSK</div>
-            <div class="col-sm-12 col-md-5 history-target"><%= utils.getTypeAndName(item.type, item.targetNm) %></div>
-            <div class="col-sm-12 col-md-3 history-date"><%= utils.formatDate(item.execDate, 'yyyy/mm/dd HH:MM:ss') %></div>
-        </div>
-        <% } %> 
+        <% if (history.length === 0) { %>
+            <h4>- Not Found -</h4>
+        <% } else { %>
+            <select onchange="redraw(this.value)">
+                <option id="select-20" value="20">20件表示</option>
+                <option id="select-50" value="50">50件表示</option>
+                <option id="select-100" value="100">100件表示</option>
+            </select>
+            <% for (item of history) { %>
+            <div class="row type-<%= item.type %>">
+                <div class="col-sm-12 col-md-5 history-target"><span class="icon"></span><span class="name"><%= utils.getTypeAndName(item.type, item.targetNm) %></span></div>
+                <div class="col-sm-12 col-md-4 history-amount"><span class="amount"><%= utils.formatNumber(item.amount) %>&nbsp;LSK</span></div>
+                <div class="col-sm-12 col-md-3 history-date"><span class="date"><%= utils.formatDate(item.execDate, 'yyyy/mm/dd HH:MM:ss') %></span></div>
+            </div>
+            <% } %> 
+        <% } %>
     </div>
 </body>
 </html>

@@ -29,8 +29,8 @@ module.exports.formatDate = (val, fmt) => {
  */
 module.exports.getTypeAndName = (val, nm) => {
   let type = 'Unknown';
-  if (val === 0) type = `To: ${nm}`;
-  else if (val === 1) type = `From: ${nm}`;
-  else if (val === 2) type = 'Fee';
+  if (val === 0) type = `${nm}`;
+  else if (val === 1) type = `${nm}`;
+  else if (val === 2) type = 'Transaction Fee';
   return type;
 }

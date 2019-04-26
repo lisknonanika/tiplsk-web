@@ -5,21 +5,20 @@
     <meta charset="utf-8">
     <title>TipLisk:User Page</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css?family=Aldrich" rel="stylesheet">
-    <link rel="stylesheet" href="./css/user.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Aldrich" >
+    <link rel="stylesheet" href="../css/user.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
-    <script src="./js/common.js"></script>
-    <script src="./js/user.js"></script>
+    <script src="../js/common.js"></script>
+    <script src="../js/user.js"></script>
 </head>
 <body>
     <div class="container">
-        <br>
-        <div>
-            <a href="./user" class="btn btn-warning">Home</a>
-            <a href="./history?offset=0&limit=20" class="btn btn-warning">History</a>
-            <a href="./logout" class="btn btn-secondary">Logout</a>
+        <div class="btn-group" role="group" aria-label="メニュー">
+            <button type="button" class="btn btn-success"><span class="fas fa-home"></span>&nbsp;Home</button>
+            <button type="button" class="btn btn-outline-success" onclick="location.href='../history?offset=0&limit=20'"><span class="fas fa-list-alt"></span>&nbsp;History</button>
+            <button type="button" class="btn btn-outline-danger" onclick="location.href='../logout'"><span class="fas fa-sign-out-alt"></span>&nbsp;Logout</button>
         </div>
-        <br>
         <h2>User Info</h2>
         <div class="user-label">UserId:&nbsp;</div>
         <div class="user-value"><%= user.userId %></div>
@@ -27,7 +26,7 @@
         <div class="user-value"><%= utils.formatNumber(user.amount) %>&nbsp;LSK</div>
         <br>
         <div><a href="javascript: void(0);" id="btn-withdraw" class="btn btn-outline-primary" onclick="withdraw();">Withdraw</a></div>
-        <div><a href="javascript: void(0);" id="btn-changepw" class="btn btn-outline-danger">Change Password</a></div>
+        <div><a href="javascript: void(0);" id="btn-changepw" class="btn btn-outline-danger" onclick="changepw();">Change Password</a></div>
     </div>
 </body>
 </html>

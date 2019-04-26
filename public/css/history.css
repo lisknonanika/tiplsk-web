@@ -2,38 +2,105 @@
 body {
     font-family: "Aldrich", "Noto Sans", sans-serif, monospace
 }
-
-.row {
-    margin: 10px 5px;
-    position: relative;
+select {
+    border: 1px solid #666;
+    border-radius: 5px;
+    padding: 5px;
 }
-
+.btn-group {
+    padding-top: 10px;
+    padding-bottom: 20px;
+    width: 100%;
+}
+.btn-group > button {
+    font-size: 0.8rem;
+}
+.row {
+    margin: 10px 3px;
+}
 .type-0,
 .type-1,
 .type-2 {
     padding: 5px 0px;
     border-radius: 5px;
 }
-
 .type-0 {
     position: relative;
     box-shadow: 0 3px 3px rgba(0,0,0,0.3);
     background: rgba(255, 194, 153, 0.5);
 }
-
 .type-1 {
     position: relative;
     box-shadow: 0 3px 3px rgba(0,0,0,0.3);
     background: rgba(176, 255, 222, 0.5);
 }
-
 .type-2 {
     position: relative;
     box-shadow: 0 3px 3px rgba(0,0,0,0.3);
     background: rgba(219, 219, 219, 0.5);
 }
-
-.history-target,
+.history-target {
+    height: 1.5rem;
+    position: relative;
+    padding: 0px 5px;
+}
+.history-amount {
+    height: 1.5rem;
+    position: relative;
+    font-size: 1.2rem;
+    padding: 0px 5px;
+}
 .history-date {
+    height: 1.5rem;
+    position: relative;
     font-size: 0.8rem;
+    padding: 0px 5px;
+}
+.history-target .name {
+    display: block;
+    position: absolute;
+    top: 0px;
+    left: 25px;
+}
+.history-amount .amount {
+    display: block;
+    position: absolute;
+    top: -2px;
+    left: 25px;
+}
+.history-date .date {
+    display: block;
+    position: absolute;
+    top: 3px;
+    left: 25px;
+}
+.type-0 .history-target .icon::before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 2px;
+    left: 18px;
+    transform: translateX(-50%);
+    border: 7px solid transparent;
+    border-left: 7px solid #001a3e;
+    margin-top: 3px;
+}
+.type-1 .history-target .icon::before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 2px;
+    left: 9px;
+    transform: translateX(-50%);
+    border: 7px solid transparent;
+    border-right: 7px solid #001a3e;
+    margin-top: 3px;
+}
+.type-2 .history-target .icon::before {
+    content: '　　';
+    background-image: url("../img/lisk_logo.svg") !important;
+    background-size: 1.7rem;
+    background-repeat: no-repeat;
+    padding-top: 5px;
+    margin-left: -5px;
 }

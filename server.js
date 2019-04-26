@@ -103,7 +103,7 @@ router.get('/user', (req, res) => {
             json: true
         });
         if (data.result) res.render('user', {user: data, utils: utils});
-        else res.redirect('/?timeout=true');
+        else throw data.error;
     })().catch((err) => {
         // SYSTEM ERROR
         console.log(err);
@@ -133,7 +133,7 @@ router.get('/history', (req, res) => {
         let histories = [];
         if (data.datas) histories = data.datas;
         if (data.result) res.render('history', {history: histories, utils: utils});
-        else res.redirect('/?timeout=true');
+        else throw data.error;
     })().catch((err) => {
         // SYSTEM ERROR
         console.log(err);
@@ -157,6 +157,31 @@ router.put('/withdraw', (req, res) => {
             url: `${config.apiUrl}withdraw`,
             headers: {'x-access-token': req.session.token},
             body: {liskAddress: req.body.liskAddress, amount: req.body.amount},
+            json: true
+        });
+        res.json(data);
+    })().catch((err) => {
+        // SYSTEM ERROR
+        console.log(err);
+        req.session.token = null;
+        res.json({result: false, error: "Error!"});
+    });
+});
+
+/**
+ * パスワード変更処理
+ */
+router.put('/password', (req, res) => {
+    (async () => {
+        if (!req.session.token) {
+            res.redirect('/?timeout=true');
+            return;
+        }
+        const data = await request({
+            method: 'PUT',
+            url: `${config.apiUrl}password`,
+            headers: {'x-access-token': req.session.token},
+            body: {twitterId: req.body.liskAddress, pw: req.body.pw},
             json: true
         });
         res.json(data);
