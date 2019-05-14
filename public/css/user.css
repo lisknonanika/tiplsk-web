@@ -2,6 +2,14 @@
 body {
     font-family: "Aldrich", "Noto Sans", sans-serif, monospace;
 }
+input[type="text"],
+input[type="password"] {
+    border: 1px solid #666;
+    border-radius: 5px;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 5px;
+}
 .Lisk-Logo {
     position: fixed;
     height: 80px;
@@ -31,18 +39,77 @@ body {
 }
 .btn-group > button {
     font-size: 0.8rem;
+    width: 33%;
+}
+.btn-group-toggle {
+    position: static;
+    padding: 20px 0 10px 0;
+}
+.btn-group .btn {
+    width: 33%;
+}
+.btn-group-toggle .focus {
+    box-shadow: none !important;
 }
 .user-value {
     margin-left: 1rem;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 }
+#btn-tip,
 #btn-withdraw,
+#btn-deposit,
 #btn-changepw {
     width: 100%;
-    margin-bottom: 10px;
+    margin-top: 10px;
+}
+#field-recipient,
+#field-amount {
+    position: relative;
+}
+#text-recipient {
+    padding-left: 2rem;
+    padding-right: 4rem;
+}
+#text-amount {
+    padding-right: 4rem;
+}
+#field-recipient>.prefix::after {
+    content: '@';
+    color: #999;
+    position: absolute;
+    left: 10px;
+    top: 0.5rem;
+}
+#field-recipient>.suffix::after {
+    content: 'さん';
+    color: #999;
+    position: absolute;
+    right: 20px;
+    top: 0.5rem;
+}
+#field-amount>.suffix::after {
+    content: 'LSK';
+    color: #999;
+    position: absolute;
+    right: 20px;
+    top: calc(0.5rem + 5px);
+}
+#field-note {
+    font-size: 0.9rem;
+    color: #f00;
+}
+#tiplsk-command {
+    border: 1px solid #666;
+    border-radius: 10px;
+    padding: 5px;
+    background-color: rgba(253, 255, 146, 0.5);
 }
 .swal2-popup {
     line-height: 1.5;
+}
+.swal2-popup .btn {
+    margin: 5px;
+    width: 33%;
 }
 .swal2-icon {
     font-family: 'Open Sans', -apple-system, BlinkMacSystemFont,
@@ -51,36 +118,4 @@ body {
 }
 #swal2-title {
     font-size: 1.3rem;
-}
-.swal2-popup input[type="text"],
-.swal2-popup input[type="password"] {
-    border: 1px solid #666;
-    border-radius: 5px;
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 5px;
-}
-.swal2-popup #field-amount {
-    position: relative;
-}
-.swal2-popup #text-amount {
-    padding-right: 4rem;
-}
-.swal2-popup #field-amount>div::after {
-    content: 'LSK';
-    color: #999;
-    position: absolute;
-    right: 20px;
-    top: 12px;
-}
-.swal2-popup .conf-value {
-    margin-left: 1rem;
-    margin-bottom: 10px;
-}
-.swal2-popup #field-note {
-    font-size: 0.9rem;
-    color: #f00;
-}
-.swal2-popup #field-link .btn {
-    font-size: 0.9rem;
 }
