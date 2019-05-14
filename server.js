@@ -144,31 +144,6 @@ router.get('/history', (req, res) => {
 });
 
 /**
- * 出金処理
- */
-router.put('/withdraw', (req, res) => {
-    (async () => {
-        if (!req.session.token) {
-            res.redirect('/?timeout=true');
-            return;
-        }
-        const data = await request({
-            method: 'PUT',
-            url: `${config.apiUrl}withdraw`,
-            headers: {'x-access-token': req.session.token},
-            body: {liskAddress: req.body.liskAddress, amount: req.body.amount},
-            json: true
-        });
-        res.json(data);
-    })().catch((err) => {
-        // SYSTEM ERROR
-        console.log(err);
-        req.session.token = null;
-        res.json({result: false, error: "Error!"});
-    });
-});
-
-/**
  * パスワード変更処理
  */
 router.put('/password', (req, res) => {
