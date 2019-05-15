@@ -1,6 +1,7 @@
 const copyCommand = () => {
     document.getSelection().selectAllChildren(document.querySelector('#tiplsk-command'));
     document.execCommand("copy");
+    alert('Tweet内容をクリップボードにコピーしました。');
 }
 
 const tip = async() => {
