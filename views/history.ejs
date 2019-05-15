@@ -30,7 +30,16 @@
             <% for (item of history) { %>
             <div class="row type-<%= item.type %>">
                 <div class="col-sm-12 col-md-5 history-target"><span class="icon"></span><span class="name"><%= utils.getTypeAndName(item.type, item.targetNm) %></span></div>
-                <div class="col-sm-12 col-md-4 history-amount"><span class="amount"><%= utils.formatNumber(item.amount) %>&nbsp;LSK</span></div>
+                <div class="col-sm-12 col-md-4 history-amount">
+                    <span class="amount">
+                    <% if (item.type === 1) { %>
+                        +
+                    <% } else { %>
+                        -
+                    <% } %>
+                    <%= utils.formatNumber(item.amount) %>&nbsp;LSK
+                    </span>
+                </div>
                 <div class="col-sm-12 col-md-3 history-date"><span class="date"><%= utils.formatDate(item.execDate, 'yyyy/mm/dd HH:MM:ss') %></span></div>
             </div>
             <% } %> 

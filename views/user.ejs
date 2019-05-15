@@ -24,9 +24,9 @@
         </div>
         <h2>User Info</h2>
         <div class="user-label">UserId:&nbsp;</div>
-        <div class="user-value"><%= user.userId %></div>
+        <div class="user-value" id="user-id"><%= user.userId %></div>
         <div class="user-label">Balance:&nbsp;</div>
-        <div class="user-value"><%= utils.formatNumber(user.amount) %>&nbsp;LSK</div>
+        <div class="user-value" id="user-balance"><%= utils.formatNumber(user.amount) %>&nbsp;LSK</div>
         <div><a href="javascript: void(0);" id="btn-tip" class="btn btn-outline-primary" onclick="tip();">Tip</a></div>
         <div><a href="javascript: void(0);" id="btn-withdraw" class="btn btn-outline-success" onclick="withdraw();">Withdraw</a></div>
         <div><a href="javascript: void(0);" id="btn-deposit" class="btn btn-outline-info" onclick="deposit();">Deposit</a></div>

@@ -104,6 +104,19 @@ input[type="password"] {
     padding: 5px;
     background-color: rgba(253, 255, 146, 0.5);
 }
+.field-label {
+    font-weight: bold;
+    font-size: 1rem;
+    text-align: left;
+}
+.field-val {
+    font-size: 1rem;
+    text-align: left;
+    margin-left: 10px;
+}
+#btn-pw {
+    width: 80%;
+}
 .swal2-popup {
     line-height: 1.5;
 }
@@ -117,5 +130,5 @@ input[type="password"] {
                  'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 #swal2-title {
-    font-size: 1.3rem;
+    font-size: 1.2rem;
 }
